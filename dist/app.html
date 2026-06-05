@@ -2494,38 +2494,104 @@ const TOPO_ICONS={
 };
 const TOPO_GROUPINGS={
   'Device category':[
-    {name:'Unknown and review',color:'#a070ff',assets:1,review:1,icons:['q']},
-    {name:'Cameras',color:'#ff4444',assets:3,review:1,icons:['cam','cam','cam']},
-    {name:'Passive/imported only',color:'#969ba3',assets:2,review:0,icons:['dev','wifi']},
-    {name:'OT and industrial',color:'#ff8040',assets:3,review:1,icons:['chip','chip','q']},
-    {name:'Workstations and mobile',color:'#6090ff',assets:1,review:0,icons:['laptop']},
-    {name:'IoT and embedded',color:'#20e080',assets:2,review:1,icons:['wifi','chip']},
-    {name:'Network infrastructure',color:'#20c0c0',assets:1,review:0,icons:['switch']},
-    {name:'Servers and storage',color:'#3aa0ff',assets:2,review:0,icons:['server','server']},
-    {name:'Printers',color:'#ffc840',assets:1,review:0,icons:['printer']}
+    {name:'Unknown and review',color:'#a070ff',assets:1,review:1,icons:['q'],members:[
+      {name:'Unknown-3E4A',ip:'192.168.1.99',type:'Unclassified',risk:5.0,review:true}]},
+    {name:'Cameras',color:'#ff4444',assets:3,review:1,icons:['cam','cam','cam'],members:[
+      {name:'Cam-03',ip:'192.168.1.30',type:'IP Camera',risk:9.7,key:'Cam-03'},
+      {name:'Cam-04',ip:'192.168.1.31',type:'IP Camera',risk:7.2},
+      {name:'Cam-05',ip:'192.168.1.32',type:'IP Camera',risk:6.8,review:true}]},
+    {name:'Passive/imported only',color:'#969ba3',assets:2,review:0,icons:['dev','wifi'],members:[
+      {name:'Sensor-01',ip:'192.168.1.51',type:'Sensor',risk:2.1},
+      {name:'Beacon-02',ip:'192.168.1.52',type:'Beacon',risk:1.8}]},
+    {name:'OT and industrial',color:'#ff8040',assets:3,review:1,icons:['chip','chip','q'],members:[
+      {name:'PLC-01',ip:'192.168.1.10',type:'PLC',risk:9.4,key:'PLC-01'},
+      {name:'PLC-02',ip:'192.168.1.13',type:'PLC',risk:4.2},
+      {name:'RTU-01',ip:'192.168.1.14',type:'RTU',risk:3.5,review:true}]},
+    {name:'Workstations and mobile',color:'#6090ff',assets:1,review:0,icons:['laptop'],members:[
+      {name:'HMI-02',ip:'192.168.1.20',type:'HMI',risk:7.8,key:'HMI-02'}]},
+    {name:'IoT and embedded',color:'#20e080',assets:2,review:1,icons:['wifi','chip'],members:[
+      {name:'IoT-Gw-01',ip:'192.168.1.60',type:'IoT Gateway',risk:5.5,review:true},
+      {name:'Thermostat-01',ip:'192.168.1.61',type:'Thermostat',risk:2.4}]},
+    {name:'Network infrastructure',color:'#20c0c0',assets:1,review:0,icons:['switch'],members:[
+      {name:'Gateway-01',ip:'192.168.1.1',type:'Router',risk:3.1,key:'Gateway-01'}]},
+    {name:'Servers and storage',color:'#3aa0ff',assets:2,review:0,icons:['server','server'],members:[
+      {name:'SCADA-SRV',ip:'192.168.1.11',type:'Server',risk:6.0},
+      {name:'Historian',ip:'192.168.1.12',type:'Database',risk:4.5}]},
+    {name:'Printers',color:'#ffc840',assets:1,review:0,icons:['printer'],members:[
+      {name:'Printer-01',ip:'192.168.1.70',type:'Printer',risk:1.5}]}
   ],
   'Purdue zone':[
-    {name:'L2 · Supervisory',color:'#6090ff',assets:3,review:1,icons:['laptop','server','server']},
-    {name:'L1 · Control',color:'#20e080',assets:4,review:2,icons:['chip','chip','chip','q']},
-    {name:'Safety zone',color:'#ffc840',assets:2,review:0,icons:['chip','chip']},
-    {name:'L0 · Process / field',color:'#ff8040',assets:3,review:1,icons:['wifi','chip','cam']},
-    {name:'Industrial DMZ',color:'#20c0c0',assets:4,review:0,icons:['switch','server','server','switch']}
+    {name:'L2 · Supervisory',color:'#6090ff',assets:3,review:1,icons:['laptop','server','server'],members:[
+      {name:'HMI-02',ip:'192.168.1.20',type:'HMI',risk:7.8,key:'HMI-02'},
+      {name:'SCADA-SRV',ip:'192.168.1.11',type:'Server',risk:6.0,review:true},
+      {name:'Historian',ip:'192.168.1.12',type:'Database',risk:4.5}]},
+    {name:'L1 · Control',color:'#20e080',assets:4,review:2,icons:['chip','chip','chip','q'],members:[
+      {name:'PLC-01',ip:'192.168.1.10',type:'PLC',risk:9.4,key:'PLC-01'},
+      {name:'PLC-02',ip:'192.168.1.13',type:'PLC',risk:4.2},
+      {name:'PLC-03',ip:'192.168.1.15',type:'PLC',risk:5.1,review:true},
+      {name:'RTU-01',ip:'192.168.1.14',type:'RTU',risk:3.5,review:true}]},
+    {name:'Safety zone',color:'#ffc840',assets:2,review:0,icons:['chip','chip'],members:[
+      {name:'SIS-01',ip:'192.168.1.40',type:'Safety PLC',risk:6.5},
+      {name:'SIS-02',ip:'192.168.1.41',type:'Safety Logic',risk:3.2}]},
+    {name:'L0 · Process / field',color:'#ff8040',assets:3,review:1,icons:['wifi','chip','cam'],members:[
+      {name:'Cam-03',ip:'192.168.1.30',type:'IP Camera',risk:9.7,key:'Cam-03'},
+      {name:'Sensor-01',ip:'192.168.1.51',type:'Sensor',risk:2.1},
+      {name:'Valve-01',ip:'192.168.1.53',type:'Actuator',risk:3.0,review:true}]},
+    {name:'Industrial DMZ',color:'#20c0c0',assets:4,review:0,icons:['switch','server','server','switch'],members:[
+      {name:'Gateway-01',ip:'192.168.1.1',type:'Router',risk:3.1,key:'Gateway-01'},
+      {name:'Switch-05',ip:'192.168.1.50',type:'Switch',risk:3.0},
+      {name:'Firewall-01',ip:'192.168.1.2',type:'Firewall',risk:2.5},
+      {name:'Jumphost-01',ip:'192.168.1.55',type:'Jump host',risk:4.0}]}
   ],
   'Vendor':[
-    {name:'Siemens',color:'#20e080',assets:6,review:1,icons:['chip','chip','laptop']},
-    {name:'Hikvision',color:'#ff4444',assets:3,review:1,icons:['cam','cam','cam']},
-    {name:'Cisco',color:'#6090ff',assets:3,review:0,icons:['switch','switch','server']},
-    {name:'Generic / unknown',color:'#a070ff',assets:4,review:2,icons:['q','dev','wifi','printer']}
+    {name:'Siemens',color:'#20e080',assets:6,review:1,icons:['chip','chip','laptop'],members:[
+      {name:'PLC-01',ip:'192.168.1.10',type:'PLC',risk:9.4,key:'PLC-01'},
+      {name:'HMI-02',ip:'192.168.1.20',type:'HMI',risk:7.8,key:'HMI-02'},
+      {name:'PLC-02',ip:'192.168.1.13',type:'PLC',risk:4.2},
+      {name:'PLC-03',ip:'192.168.1.15',type:'PLC',risk:5.1,review:true},
+      {name:'SCADA-SRV',ip:'192.168.1.11',type:'Server',risk:6.0},
+      {name:'Historian',ip:'192.168.1.12',type:'Database',risk:4.5}]},
+    {name:'Hikvision',color:'#ff4444',assets:3,review:1,icons:['cam','cam','cam'],members:[
+      {name:'Cam-03',ip:'192.168.1.30',type:'IP Camera',risk:9.7,key:'Cam-03'},
+      {name:'Cam-04',ip:'192.168.1.31',type:'IP Camera',risk:7.2},
+      {name:'Cam-05',ip:'192.168.1.32',type:'IP Camera',risk:6.8,review:true}]},
+    {name:'Cisco',color:'#6090ff',assets:3,review:0,icons:['switch','switch','server'],members:[
+      {name:'Gateway-01',ip:'192.168.1.1',type:'Router',risk:3.1,key:'Gateway-01'},
+      {name:'Switch-05',ip:'192.168.1.50',type:'Switch',risk:3.0},
+      {name:'Firewall-01',ip:'192.168.1.2',type:'Firewall',risk:2.5}]},
+    {name:'Generic / unknown',color:'#a070ff',assets:4,review:2,icons:['q','dev','wifi','printer'],members:[
+      {name:'Unknown-3E4A',ip:'192.168.1.99',type:'Unclassified',risk:5.0,review:true},
+      {name:'IoT-Gw-01',ip:'192.168.1.60',type:'IoT Gateway',risk:5.5,review:true},
+      {name:'Thermostat-01',ip:'192.168.1.61',type:'Thermostat',risk:2.4},
+      {name:'Printer-01',ip:'192.168.1.70',type:'Printer',risk:1.5}]}
   ],
   'Risk tier':[
-    {name:'Critical',color:'#ff4444',assets:2,review:0,icons:['chip','cam']},
-    {name:'High',color:'#ff8040',assets:4,review:1,icons:['chip','laptop','wifi','server']},
-    {name:'Medium',color:'#ffc840',assets:6,review:2,icons:['server','switch','printer','chip','wifi','dev']},
-    {name:'Low',color:'#20e080',assets:4,review:1,icons:['q','dev','laptop','switch']}
+    {name:'Critical',color:'#ff4444',assets:2,review:0,icons:['chip','cam'],members:[
+      {name:'Cam-03',ip:'192.168.1.30',type:'IP Camera',risk:9.7,key:'Cam-03'},
+      {name:'PLC-01',ip:'192.168.1.10',type:'PLC',risk:9.4,key:'PLC-01'}]},
+    {name:'High',color:'#ff8040',assets:4,review:1,icons:['chip','laptop','wifi','server'],members:[
+      {name:'HMI-02',ip:'192.168.1.20',type:'HMI',risk:7.8,key:'HMI-02'},
+      {name:'Cam-04',ip:'192.168.1.31',type:'IP Camera',risk:7.2},
+      {name:'Cam-05',ip:'192.168.1.32',type:'IP Camera',risk:6.8},
+      {name:'SIS-01',ip:'192.168.1.40',type:'Safety PLC',risk:6.5,review:true}]},
+    {name:'Medium',color:'#ffc840',assets:6,review:2,icons:['server','switch','printer','chip','wifi','dev'],members:[
+      {name:'SCADA-SRV',ip:'192.168.1.11',type:'Server',risk:6.0},
+      {name:'IoT-Gw-01',ip:'192.168.1.60',type:'IoT Gateway',risk:5.5,review:true},
+      {name:'PLC-03',ip:'192.168.1.15',type:'PLC',risk:5.1,review:true},
+      {name:'Historian',ip:'192.168.1.12',type:'Database',risk:4.5},
+      {name:'PLC-02',ip:'192.168.1.13',type:'PLC',risk:4.2},
+      {name:'Jumphost-01',ip:'192.168.1.55',type:'Jump host',risk:4.0}]},
+    {name:'Low',color:'#20e080',assets:4,review:1,icons:['q','dev','laptop','switch'],members:[
+      {name:'RTU-01',ip:'192.168.1.14',type:'RTU',risk:3.5,review:true},
+      {name:'Gateway-01',ip:'192.168.1.1',type:'Router',risk:3.1,key:'Gateway-01'},
+      {name:'Valve-01',ip:'192.168.1.53',type:'Actuator',risk:3.0},
+      {name:'Thermostat-01',ip:'192.168.1.61',type:'Thermostat',risk:2.4}]}
   ]
 };
+let topoMode='Device category', topoMembers=[];
 function renderTopo(mode){
-  const groups=TOPO_GROUPINGS[mode]||TOPO_GROUPINGS['Device category'];
+  topoMode=TOPO_GROUPINGS[mode]?mode:'Device category';
+  const groups=TOPO_GROUPINGS[topoMode];
   const cx=500,cy=345,rx=350,ry=248,N=groups.length;
   let lines='',cards='';
   groups.forEach((g,i)=>{
@@ -2536,7 +2602,7 @@ function renderTopo(mode){
     const ctrlx=mx+(-dy/len)*46, ctrly=my+(dx/len)*46;
     lines+='<path d="M'+cx+' '+cy+' Q '+ctrlx.toFixed(1)+' '+ctrly.toFixed(1)+' '+x.toFixed(1)+' '+y.toFixed(1)+'" fill="none" stroke="'+g.color+'" stroke-width="2" stroke-dasharray="6 7" opacity=".55"/>';
     const chips=g.icons.map((k,idx)=>'<span class="topo-ico'+(idx<g.review?' need-review':'')+'">'+(TOPO_ICONS[k]||TOPO_ICONS.dev)+'</span>').join('');
-    cards+='<div class="topo-group" style="left:'+(x/1000*100).toFixed(2)+'%;top:'+(y/720*100).toFixed(2)+'%;color:'+g.color+'" onclick="focusGroup(this,\''+g.name+'\','+g.assets+','+g.review+')">'
+    cards+='<div class="topo-group" style="left:'+(x/1000*100).toFixed(2)+'%;top:'+(y/720*100).toFixed(2)+'%;color:'+g.color+'" onclick="openGroupByIdx('+i+')">'
       +'<div style="font-weight:700;font-size:13px">'+g.name+'</div>'
       +'<div style="font-size:11px;color:var(--muted);margin:2px 0 9px">'+g.assets+' assets · '+g.review+' review</div>'
       +'<div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap">'+chips+'</div></div>';
@@ -2547,10 +2613,52 @@ function renderTopo(mode){
   document.getElementById('topo-stat').innerHTML='<b>'+N+'</b> top groups · <b>'+tA+'</b> asset candidates · <b>'+tR+'</b> need review · Click a category to focus';
   document.getElementById('topo-core-sub').textContent=N+' groups';
 }
-function focusGroup(el,name,a,r){
-  document.querySelectorAll('.topo-group').forEach(g=>g.classList.remove('focused'));
-  el.classList.add('focused');
-  toast('Focused: '+name, a+' assets · '+r+' need review', r>0?'warn':'info');
+function openGroupByIdx(i){
+  const g=(TOPO_GROUPINGS[topoMode]||[])[i]; if(!g) return;
+  document.querySelectorAll('.topo-group').forEach((c,idx)=>c.classList.toggle('focused',idx===i));
+  topoMembers=g.members||[];
+  const head='<div style="font-size:11px;color:'+g.color+';font-weight:700;letter-spacing:.08em;text-transform:uppercase">'+esc(topoMode)+' group</div>'
+    +'<div style="font-size:20px;font-weight:700;margin-top:2px">'+esc(g.name)+'</div>'
+    +'<div style="font-size:12px;color:var(--muted)">'+g.assets+' assets · '+g.review+' need review</div>';
+  const rows=topoMembers.map((m,idx)=>{
+    const rc=m.risk>=9?'sev-critical':m.risk>=7?'sev-high':m.risk>=4?'sev-medium':'sev-low';
+    const rv=m.review?' <span class="badge badge-amber">review</span>':'';
+    const linked=(m.key&&ASSETS[m.key]);
+    return '<div class="dl" style="cursor:pointer;align-items:center;gap:10px" onclick="openMemberByIdx('+idx+')">'
+      +'<span><b style="color:var(--ink)">'+esc(m.name)+'</b> <span style="color:var(--muted);font-size:12px">'+esc(m.ip)+' · '+esc(m.type)+'</span>'+rv+'</span>'
+      +'<span class="'+rc+'" style="font-weight:700;white-space:nowrap">'+m.risk.toFixed(1)+(linked?' →':'')+'</span></div>';
+  }).join('');
+  const body='<div class="dsec">Member devices ('+topoMembers.length+')</div>'+rows
+    +'<div style="font-size:12px;color:var(--muted);margin-top:14px">Click a device for its full profile.'+(g.review>0?' Amber-flagged devices still need identity review.':'')+'</div>'
+    +'<div style="display:flex;gap:8px;margin-top:16px"><button class="btn btn-accent btn-sm" onclick="nav(\'inventory\');closeDrawer()">Open inventory</button><button class="btn btn-outline btn-sm" onclick="nav(\'risk\');closeDrawer()">Risk queue</button></div>';
+  document.getElementById('drawer-head-content').innerHTML=head;
+  document.getElementById('drawer-body').innerHTML=body;
+  openDrawer();
+}
+function openMemberByIdx(i){
+  const m=topoMembers[i]; if(!m) return;
+  if(m.key&&ASSETS[m.key]){openAsset(m.key);return;}
+  openSynth(m);
+}
+function openSynth(m){
+  const rc=m.risk>=9?'badge-red':m.risk>=7?'badge-orange':m.risk>=4?'badge-amber':'badge-green';
+  const band=m.risk>=9?'CRITICAL':m.risk>=7?'HIGH':m.risk>=4?'MEDIUM':'LOW';
+  const head='<div style="font-size:11px;color:var(--accent);font-weight:700;letter-spacing:.08em;text-transform:uppercase">'+esc(m.type)+'</div>'
+    +'<div style="font-size:20px;font-weight:700;margin-top:2px">'+esc(m.name)+'</div>'
+    +'<div style="font-size:12px;color:var(--muted)">'+esc(m.ip)+'</div>';
+  const body='<div style="display:flex;align-items:center;gap:14px;margin-bottom:6px">'+riskRing(m.risk)
+    +'<div><span class="badge '+rc+'" style="font-size:13px;padding:3px 12px">'+band+' '+m.risk.toFixed(1)+'</span>'
+    +(m.review?'<div style="margin-top:7px"><span class="badge badge-amber">Needs identity review</span></div>':'')+'</div></div>'
+    +'<div class="dsec">Identity</div>'
+    +'<div class="dl"><span>IP address</span><span>'+esc(m.ip)+'</span></div>'
+    +'<div class="dl"><span>Device type</span><span>'+esc(m.type)+'</span></div>'
+    +'<div class="dl"><span>Enrichment</span><span style="color:var(--muted)">Passive / limited</span></div>'
+    +'<div class="dsec">Note</div>'
+    +'<div style="font-size:12px;color:var(--muted);line-height:1.6">Seen passively or imported — full CPE, CVE and open-protocol enrichment requires an authorized active scan, so identity confidence is reduced.</div>'
+    +'<div style="display:flex;gap:8px;margin-top:16px"><button class="btn btn-accent btn-sm" onclick="nav(\'scan\');closeDrawer()">Run discovery</button><button class="btn btn-outline btn-sm" onclick="nav(\'cve\');closeDrawer()">NVD lookup</button></div>';
+  document.getElementById('drawer-head-content').innerHTML=head;
+  document.getElementById('drawer-body').innerHTML=body;
+  openDrawer();
 }
 
 // ═══════════════════════════════════════════════
