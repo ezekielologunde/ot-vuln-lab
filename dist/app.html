@@ -561,6 +561,18 @@ body.cmdk-open #cmdk{display:flex}
 .mcp-field code{display:block;font-size:12px;color:var(--code-ink);background:var(--code-bg);border-radius:6px;padding:9px 11px;word-break:break-all;margin-bottom:8px;font-family:"Cascadia Code",monospace}
 .mcp-steps{margin:8px 0 0;padding-left:18px;font-size:13px;color:var(--muted);line-height:1.7}
 
+/* ── Grouped, collapsible sidebar (reduces overwhelm) ── */
+.nav-group{margin-bottom:2px}
+.nav-group-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 16px 5px;cursor:pointer;user-select:none}
+.nav-group-head span{font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;transition:color .15s ease}
+.nav-group-head:hover span{color:var(--ink)}
+.nav-group-head .chev{color:var(--muted);transition:transform .24s var(--ease-out);flex-shrink:0}
+.nav-group.collapsed .chev{transform:rotate(-90deg)}
+.nav-group-items{display:grid;grid-template-rows:1fr;transition:grid-template-rows .26s var(--ease-drawer)}
+.nav-group.collapsed .nav-group-items{grid-template-rows:0fr}
+.nav-group-items > .ng-inner{overflow:hidden;min-height:0}
+@media (prefers-reduced-motion:reduce){.nav-group-items{transition:none}.nav-group-head .chev{transition:none}}
+
 @media (prefers-reduced-motion:reduce){
   .page.active .minibar > i{animation:none;transform:none}
   .live-pill .pulse{animation:none}
@@ -617,86 +629,115 @@ body.cmdk-open #cmdk{display:flex}
     <div class="sidebar-sub">OT Vulnerability Lab</div>
   </div>
 
-  <div class="nav-section">
-    <div class="nav-label">Workspace</div>
-    <div class="nav-item active" onclick="nav('scan')">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.41 1.41M11.54 11.54l1.41 1.41M3.05 12.95l1.41-1.41M11.54 4.46l1.41-1.41" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-      New Scan
+  <div class="nav-section" style="padding-top:8px">
+    <!-- DISCOVER -->
+    <div class="nav-group" id="ng-discover">
+      <div class="nav-group-head" onclick="toggleGroup('discover')"><span>Discover</span><svg class="chev" width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="nav-group-items"><div class="ng-inner">
+        <div class="nav-item active" onclick="nav('scan')">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.41 1.41M11.54 11.54l1.41 1.41M3.05 12.95l1.41-1.41M11.54 4.46l1.41-1.41" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+          New Scan
+        </div>
+        <div class="nav-item" onclick="nav('overview')">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+          Overview
+        </div>
+        <div class="nav-item" onclick="nav('topology')">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2"/><circle cx="2" cy="4" r="1.5"/><circle cx="14" cy="4" r="1.5"/><circle cx="2" cy="12" r="1.5"/><circle cx="14" cy="12" r="1.5"/><path d="M3.2 4.8L6.4 6.8M9.6 6.8l3.2-2M3.2 11.2L6.4 9.2M9.6 9.2l3.2 2"/></svg>
+          Topology
+        </div>
+        <div class="nav-item" onclick="nav('inventory')">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12v9a1 1 0 01-1 1H3a1 1 0 01-1-1V4z"/><path d="M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1"/><path d="M6 8h4M6 11h2"/></svg>
+          Asset Inventory
+          <span class="nav-badge">16</span>
+        </div>
+        <div class="nav-item" onclick="nav('collectors')">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="9" width="12" height="5" rx="1"/><path d="M4 9V5a4 4 0 018 0v4"/><circle cx="8" cy="11.5" r=".8" fill="currentColor"/></svg>
+          Collectors
+          <span class="nav-badge" style="background:rgba(var(--ov),.12);color:var(--muted)">1</span>
+        </div>
+      </div></div>
     </div>
-    <div class="nav-item" onclick="nav('overview')">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
-      Overview
+    <!-- ASSESS -->
+    <div class="nav-group" id="ng-assess">
+      <div class="nav-group-head" onclick="toggleGroup('assess')"><span>Assess</span><svg class="chev" width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="nav-group-items"><div class="ng-inner">
+        <div class="nav-item" onclick="nav('cve')">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v4M8 11v1"/></svg>
+          CVE / NVD Lookup
+          <span class="nav-badge">4</span>
+        </div>
+        <div class="nav-item" onclick="nav('cvss')">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12 L5 7 L8 9 L11 4 L14 8"/><path d="M2 14h12"/></svg>
+          CVSS Interpreter
+        </div>
+        <div class="nav-item" onclick="nav('scanner')">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="10" rx="1"/><path d="M5 7h6M5 10h4"/></svg>
+          Scanner Adapters
+        </div>
+        <div class="nav-item" onclick="nav('creds')">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="10" height="7" rx="1"/><path d="M5 7V5a3 3 0 016 0v2"/><circle cx="8" cy="10.5" r="1"/></svg>
+          Default Credentials
+        </div>
+        <div class="nav-item" onclick="nav('coverage')">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 2v6l3 3"/></svg>
+          Coverage &amp; Provenance
+        </div>
+      </div></div>
     </div>
-    <div class="nav-item" onclick="nav('cve')">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v4M8 11v1"/></svg>
-      CVE / NVD Lookup
-      <span class="nav-badge">4</span>
+    <!-- PRIORITIZE -->
+    <div class="nav-group" id="ng-prioritize">
+      <div class="nav-group-head" onclick="toggleGroup('prioritize')"><span>Prioritize &amp; Prove</span><svg class="chev" width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="nav-group-items"><div class="ng-inner">
+        <div class="nav-item" onclick="nav('risk')">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2L2 13h12L8 2z"/><path d="M8 7v3M8 11.5v.5"/></svg>
+          Risk Prioritization
+        </div>
+        <div class="nav-item" onclick="nav('evidence')">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 2H4a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1V5l-3-3z"/><path d="M10 2v3h3M6 8h4M6 11h2"/></svg>
+          Evidence &amp; Validation
+        </div>
+        <div class="nav-item" onclick="nav('frameworks')">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h12v3H2zM2 8h5v5H2zM9 8h5v5H9z"/></svg>
+          Frameworks &amp; Controls
+        </div>
+      </div></div>
     </div>
-    <div class="nav-item" onclick="nav('cvss')">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12 L5 7 L8 9 L11 4 L14 8"/><path d="M2 14h12"/></svg>
-      CVSS Interpreter
+    <!-- RESPOND -->
+    <div class="nav-group" id="ng-respond">
+      <div class="nav-group-head" onclick="toggleGroup('respond')"><span>Respond</span><svg class="chev" width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="nav-group-items"><div class="ng-inner">
+        <div class="nav-item" onclick="nav('remediation')">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10v10H3z"/><path d="M5.5 8l1.5 1.5L10.5 6"/></svg>
+          Remediation
+        </div>
+        <div class="nav-item" onclick="nav('reports')">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 1.5h6l2.5 2.5v10a.5.5 0 01-.5.5H4a.5.5 0 01-.5-.5V2a.5.5 0 01.5-.5z"/><path d="M9.5 1.5V4H12M6 8h4M6 11h3"/></svg>
+          Reports
+        </div>
+        <div class="nav-item" onclick="nav('ai')">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12V4a1 1 0 011-1h10a1 1 0 011 1v8l-3-2H3a1 1 0 01-1-1z"/><path d="M5 7h6M5 9.5h3"/></svg>
+          AI / MCP Guide
+        </div>
+      </div></div>
     </div>
-    <div class="nav-item" onclick="nav('scanner')">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="10" rx="1"/><path d="M5 7h6M5 10h4"/></svg>
-      Scanner Adapters
-    </div>
-    <div class="nav-item" onclick="nav('topology')">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2"/><circle cx="2" cy="4" r="1.5"/><circle cx="14" cy="4" r="1.5"/><circle cx="2" cy="12" r="1.5"/><circle cx="14" cy="12" r="1.5"/><path d="M3.2 4.8L6.4 6.8M9.6 6.8l3.2-2M3.2 11.2L6.4 9.2M9.6 9.2l3.2 2"/></svg>
-      Topology
-    </div>
-    <div class="nav-item" onclick="nav('inventory')">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12v9a1 1 0 01-1 1H3a1 1 0 01-1-1V4z"/><path d="M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1"/><path d="M6 8h4M6 11h2"/></svg>
-      Asset Inventory
-      <span class="nav-badge">16</span>
-    </div>
-    <div class="nav-item" onclick="nav('collectors')">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="9" width="12" height="5" rx="1"/><path d="M4 9V5a4 4 0 018 0v4"/><circle cx="8" cy="11.5" r=".8" fill="currentColor"/></svg>
-      Collectors
-      <span class="nav-badge" style="background:rgba(var(--ov),.12);color:var(--muted)">1</span>
-    </div>
-    <div class="nav-item" onclick="nav('reports')">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 1.5h6l2.5 2.5v10a.5.5 0 01-.5.5H4a.5.5 0 01-.5-.5V2a.5.5 0 01.5-.5z"/><path d="M9.5 1.5V4H12M6 8h4M6 11h3"/></svg>
-      Reports
-    </div>
-    <div class="nav-item" onclick="nav('creds')">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="10" height="7" rx="1"/><path d="M5 7V5a3 3 0 016 0v2"/><circle cx="8" cy="10.5" r="1"/></svg>
-      Default Credentials
-    </div>
-    <div class="nav-item" onclick="nav('risk')">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2L2 13h12L8 2z"/><path d="M8 7v3M8 11.5v.5"/></svg>
-      Risk Prioritization
-    </div>
-    <div class="nav-item" onclick="nav('evidence')">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 2H4a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1V5l-3-3z"/><path d="M10 2v3h3M6 8h4M6 11h2"/></svg>
-      Evidence &amp; Validation
-    </div>
-    <div class="nav-item" onclick="nav('coverage')">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 2v6l3 3"/></svg>
-      Coverage &amp; Provenance
-    </div>
-    <div class="nav-item" onclick="nav('ai')">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12V4a1 1 0 011-1h10a1 1 0 011 1v8l-3-2H3a1 1 0 01-1-1z"/><path d="M5 7h6M5 9.5h3"/></svg>
-      AI / MCP Guide
-    </div>
-    <div class="nav-item" onclick="nav('safety')">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2l5 2v4c0 3-5 6-5 6S3 11 3 8V4l5-2z"/><path d="M5.5 8l2 2 3-3"/></svg>
-      Safety Posture
-    </div>
-    <div class="nav-item" onclick="nav('frameworks')">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h12v3H2zM2 8h5v5H2zM9 8h5v5H9z"/></svg>
-      Frameworks &amp; Controls
-    </div>
-    <div class="nav-item" onclick="nav('livedata')">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="8" cy="4" rx="5.5" ry="2.2"/><path d="M2.5 4v4c0 1.2 2.5 2.2 5.5 2.2s5.5-1 5.5-2.2V4M2.5 8v4c0 1.2 2.5 2.2 5.5 2.2s5.5-1 5.5-2.2V8"/></svg>
-      Live Data &amp; Forwarders
-    </div>
-    <div class="nav-item" onclick="nav('remediation')">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10v10H3z"/><path d="M5.5 8l1.5 1.5L10.5 6"/></svg>
-      Remediation
-    </div>
-    <div class="nav-item" onclick="nav('settings')">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2.2"/><path d="M8 1.5v2M8 12.5v2M1.5 8h2M12.5 8h2M3.5 3.5l1.4 1.4M11.1 11.1l1.4 1.4M3.5 12.5l1.4-1.4M11.1 4.9l1.4-1.4"/></svg>
-      Settings
+    <!-- SYSTEM -->
+    <div class="nav-group" id="ng-system">
+      <div class="nav-group-head" onclick="toggleGroup('system')"><span>System</span><svg class="chev" width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></div>
+      <div class="nav-group-items"><div class="ng-inner">
+        <div class="nav-item" onclick="nav('livedata')">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="8" cy="4" rx="5.5" ry="2.2"/><path d="M2.5 4v4c0 1.2 2.5 2.2 5.5 2.2s5.5-1 5.5-2.2V4M2.5 8v4c0 1.2 2.5 2.2 5.5 2.2s5.5-1 5.5-2.2V8"/></svg>
+          Live Data &amp; Forwarders
+        </div>
+        <div class="nav-item" onclick="nav('safety')">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2l5 2v4c0 3-5 6-5 6S3 11 3 8V4l5-2z"/><path d="M5.5 8l2 2 3-3"/></svg>
+          Safety Posture
+        </div>
+        <div class="nav-item" onclick="nav('settings')">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2.2"/><path d="M8 1.5v2M8 12.5v2M1.5 8h2M12.5 8h2M3.5 3.5l1.4 1.4M11.1 11.1l1.4 1.4M3.5 12.5l1.4-1.4M11.1 4.9l1.4-1.4"/></svg>
+          Settings
+        </div>
+      </div></div>
     </div>
   </div>
 </nav>
@@ -2381,6 +2422,7 @@ function nav(id) {
       n.classList.add('active');
   });
   document.getElementById('topbar-title').textContent = PAGE_TITLES[id]||id;
+  expandActiveGroup(); // never leave the current page hidden inside a collapsed group
   if(id==='cvss') parseCVSS();
   if(id==='scanner') initOVAS();
   if(id==='topology') renderTopo(document.getElementById('topo-group-sel').value);
@@ -2463,6 +2505,22 @@ function toast(title, sub, type){
 // ═══════════════════════════════════════════════
 function toggleSidebar(){document.body.classList.toggle('sidebar-open');}
 function closeSidebar(){document.body.classList.remove('sidebar-open');}
+
+// Collapsible sidebar groups (chunk 19 items into scannable sections)
+function toggleGroup(key){
+  const g=document.getElementById('ng-'+key); if(!g) return;
+  g.classList.toggle('collapsed');
+  try{ lsSet('ot-nav-collapsed',[...document.querySelectorAll('.nav-group.collapsed')].map(x=>x.id.replace('ng-','')).join(',')); }catch(e){}
+}
+function restoreNavGroups(){
+  (lsGet('ot-nav-collapsed')||'').split(',').filter(Boolean).forEach(function(k){
+    const g=document.getElementById('ng-'+k); if(g) g.classList.add('collapsed');
+  });
+}
+function expandActiveGroup(){
+  const a=document.querySelector('.nav-item.active');
+  if(a){ const grp=a.closest('.nav-group'); if(grp) grp.classList.remove('collapsed'); }
+}
 
 function exportReport(){
   toast('Report exported','remediation-plan-2024-01-15.pdf · 3 devices, 14 CVEs','ok');
@@ -3352,6 +3410,9 @@ document.addEventListener('keydown',function(e){
   }
 });
 renderRem();
+
+// Restore collapsed sidebar groups, keeping the active group open.
+restoreNavGroups(); expandActiveGroup();
 
 // Make sidebar items keyboard-operable (they're divs, not buttons).
 document.querySelectorAll('.nav-item').forEach(function(n){
