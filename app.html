@@ -2473,13 +2473,113 @@ function enrollCollector(){
 function rotateToken(){
   toast('Token rotated','New secret issued · previous token revoked','warn');
 }
+const REPORT_GENERATED='2026-05-20T12:00:00.000Z';
+const REPORT_BASE='discovery-report-2026-05-20';
+function selectedSections(){
+  return [...document.querySelectorAll('#page-reports .rep-row input:checked')]
+    .map(i=>i.closest('.rep-row').querySelector('.rl').textContent.trim());
+}
+function reportAssets(){
+  const seen={}, list=[];
+  (TOPO_GROUPINGS['Device category']||[]).forEach(g=>{
+    (g.members||[]).forEach(m=>{
+      if(seen[m.ip]) return; seen[m.ip]=1;
+      const a=(m.key&&ASSETS[m.key])?ASSETS[m.key]:null;
+      list.push({name:m.name,ip:m.ip,type:m.type,category:g.name,
+        vendor:a?a.vendor:'',firmware:a?a.fw:'',risk:m.risk,
+        cves:a?a.cves.length:0,review:m.review?'needs-review':'accepted'});
+    });
+  });
+  return list;
+}
+function buildReportObject(){
+  const assets=reportAssets();
+  return {
+    report:'Breakwater discovery report',
+    site:'Breakwater Light Industrial Lab',
+    run:'run-sim-small-industrial',
+    generated:REPORT_GENERATED,
+    deterministic:true,
+    sections:selectedSections(),
+    summary:{assets:assets.length,review:4,unknown:1,confidence:'75%',
+      evidenceRecords:33,criticalFindings:2,kev:2},
+    assets:assets,
+    cves:Object.keys(CVE_DETAILS).map(id=>({id:id,title:CVE_DETAILS[id].title,
+      severity:CVE_DETAILS[id].sev,cvss:CVE_DETAILS[id].score,kev:!!CVE_DETAILS[id].kev,
+      epss:CVE_DETAILS[id].epss,vector:CVE_DETAILS[id].vector})),
+    appendix:{providers:0,coverageGaps:0,evidenceRecords:33,secretsRedacted:true,
+      greenboneSidecar:'render-only-local',nucleiSafeTemplates:true}
+  };
+}
+function toCSV(assets){
+  const head=['Name','IP','Type','Category','Vendor','Firmware','Risk','CVEs','Review'];
+  const esc2=v=>{v=String(v==null?'':v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
+  const rows=assets.map(a=>[a.name,a.ip,a.type,a.category,a.vendor,a.firmware,a.risk,a.cves,a.review].map(esc2).join(','));
+  return head.join(',')+'\n'+rows.join('\n')+'\n';
+}
+function buildReportHTML(r, forPrint){
+  const band=s=>s>=9?'#d61f1f':s>=7?'#d9480f':s>=4?'#9a6700':'#0a7a43';
+  const rows=r.assets.map(a=>'<tr><td>'+esc(a.name)+'</td><td>'+esc(a.ip)+'</td><td>'+esc(a.type)+'</td><td>'+esc(a.category)+'</td><td>'+esc(a.vendor||'—')+'</td><td>'+esc(a.firmware||'—')+'</td><td style="color:'+band(a.risk)+';font-weight:700">'+a.risk.toFixed(1)+'</td><td>'+a.cves+'</td><td>'+esc(a.review)+'</td></tr>').join('');
+  const cverows=r.cves.map(c=>'<tr><td>'+esc(c.id)+'</td><td>'+esc(c.title)+'</td><td>'+esc(c.severity)+'</td><td>'+esc(c.cvss)+'</td><td>'+(c.kev?'KEV':'—')+'</td><td>'+esc(c.epss)+'</td></tr>').join('');
+  const secs=r.sections.map(s=>'<li>'+esc(s)+'</li>').join('');
+  return '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'+esc(r.report)+'</title>'
+    +'<style>body{font-family:system-ui,Segoe UI,Arial,sans-serif;color:#15171c;max-width:880px;margin:32px auto;padding:0 24px;line-height:1.5}'
+    +'h1{font-size:24px;margin:0}h2{font-size:15px;text-transform:uppercase;letter-spacing:.05em;color:#5d636e;margin:26px 0 8px;border-bottom:2px solid #ec0000;padding-bottom:4px}'
+    +'.meta{color:#5d636e;font-size:13px;margin-top:4px}.kpis{display:flex;gap:18px;flex-wrap:wrap;margin:14px 0}'
+    +'.kpi{border:1px solid #e2e4e8;border-radius:8px;padding:10px 16px}.kpi b{font-size:22px;display:block}.kpi span{font-size:11px;color:#5d636e;text-transform:uppercase}'
+    +'table{border-collapse:collapse;width:100%;font-size:12px;margin-top:6px}th,td{text-align:left;padding:6px 9px;border-bottom:1px solid #e8eaee}th{color:#5d636e;text-transform:uppercase;font-size:10px}'
+    +'.brand{display:inline-block;width:30px;height:30px;background:#ec0000;border-radius:7px;vertical-align:middle;margin-right:10px}'
+    +'ul{font-size:13px}.foot{margin-top:28px;font-size:11px;color:#5d636e}@media print{body{margin:0}}</style></head><body>'
+    +'<span class="brand"></span><h1 style="display:inline">'+esc(r.report)+'</h1>'
+    +'<div class="meta">'+esc(r.site)+' · '+esc(r.run)+' · generated '+esc(r.generated)+' · deterministic export</div>'
+    +'<h2>Executive summary</h2><div class="kpis">'
+    +'<div class="kpi"><b>'+r.summary.assets+'</b><span>Assets</span></div>'
+    +'<div class="kpi"><b>'+r.summary.review+'</b><span>Review</span></div>'
+    +'<div class="kpi"><b>'+r.summary.unknown+'</b><span>Unknown</span></div>'
+    +'<div class="kpi"><b>'+r.summary.confidence+'</b><span>Confidence</span></div>'
+    +'<div class="kpi"><b>'+r.summary.kev+'</b><span>CISA KEV</span></div>'
+    +'<div class="kpi"><b>'+r.summary.evidenceRecords+'</b><span>Evidence</span></div></div>'
+    +'<h2>Report sections</h2><ul>'+(secs||'<li>Executive discovery summary</li>')+'</ul>'
+    +'<h2>Asset inventory ('+r.assets.length+')</h2><table><thead><tr><th>Name</th><th>IP</th><th>Type</th><th>Category</th><th>Vendor</th><th>Firmware</th><th>Risk</th><th>CVEs</th><th>Review</th></tr></thead><tbody>'+rows+'</tbody></table>'
+    +'<h2>Vulnerabilities ('+r.cves.length+')</h2><table><thead><tr><th>CVE</th><th>Title</th><th>Severity</th><th>CVSS</th><th>KEV</th><th>EPSS</th></tr></thead><tbody>'+cverows+'</tbody></table>'
+    +'<h2>Chapter 03 evidence appendix</h2><div style="font-size:13px;color:#5d636e">Evidence records: '+r.appendix.evidenceRecords+' · Coverage gaps: '+r.appendix.coverageGaps+' · Providers: '+r.appendix.providers+' · Greenbone: '+esc(r.appendix.greenboneSidecar)+' · Nuclei safe-templates: yes · Secrets redacted: yes</div>'
+    +'<div class="foot">Generated by OT Vulnerability Assessment Lab — simulator-backed fixture. No live network was scanned.</div>'
+    +(forPrint?'<script>window.onload=function(){setTimeout(function(){window.print()},300)}<\/script>':'')
+    +'</body></html>';
+}
+function downloadFile(name, content, mime){
+  try{
+    const blob=new Blob([content],{type:mime});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url; a.download=name; document.body.appendChild(a); a.click();
+    setTimeout(function(){a.remove();URL.revokeObjectURL(url);},1500);
+    return true;
+  }catch(e){ toast('Download failed', String(e.message||e),'danger'); return false; }
+}
 function generateReport(){
-  const n=document.querySelectorAll('#page-reports .rep-row input:checked').length;
-  toast('Report generated', n+' section'+(n===1?'':'s')+' · 33 evidence records · Chapter 03 appendices','ok');
+  const r=buildReportObject();
+  if(!r.sections.length){toast('Nothing selected','Tick at least one report section','warn');return;}
+  downloadFile(REPORT_BASE+'.json', JSON.stringify(r,null,2), 'application/json');
+  toast('Report generated', r.sections.length+' section'+(r.sections.length===1?'':'s')+' · '+r.summary.evidenceRecords+' evidence records','ok');
 }
 function downloadReport(fmt){
-  const ext=fmt.toLowerCase().replace('-ready','');
-  toast('Download started','discovery-report-2026-05-20.'+ext+' · source metadata included','ok');
+  const r=buildReportObject();
+  if(fmt==='JSON'){ downloadFile(REPORT_BASE+'.json', JSON.stringify(r,null,2), 'application/json'); }
+  else if(fmt==='CSV'){ downloadFile(REPORT_BASE+'.csv', toCSV(r.assets), 'text/csv'); }
+  else if(fmt==='HTML'){ downloadFile(REPORT_BASE+'.html', buildReportHTML(r,false), 'text/html'); }
+  else if(fmt==='PDF-ready'){
+    try{
+      const blob=new Blob([buildReportHTML(r,true)],{type:'text/html'});
+      const url=URL.createObjectURL(blob);
+      const w=window.open(url,'_blank');
+      if(!w){ downloadFile(REPORT_BASE+'.html', buildReportHTML(r,false), 'text/html'); toast('Popup blocked','Downloaded HTML — open and press Ctrl+P','warn'); return; }
+      setTimeout(function(){URL.revokeObjectURL(url);},10000);
+    }catch(e){ downloadFile(REPORT_BASE+'.html', buildReportHTML(r,false), 'text/html'); }
+    toast('PDF-ready report opened','Print dialog will open — choose “Save as PDF”','info');
+    return;
+  }
+  toast('Download started', REPORT_BASE+'.'+fmt.toLowerCase()+' · source metadata included','ok');
 }
 function resetSettings(){
   toast('Appearance reset','Defaults restored on this device','info');
