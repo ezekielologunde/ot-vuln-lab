@@ -501,6 +501,66 @@ body.cmdk-open #cmdk{display:flex}
 .page.active .rem-card{animation:cardIn .3s var(--ease-out) both}
 @media (prefers-reduced-motion:reduce){.cmdk-box{animation:none}.page.active .rem-card{animation:none}}
 
+/* ── Collectors page ── */
+.sec-kicker{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:22px 0 12px}
+.sec-kicker .sk{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.sec-kicker .sk-sub{font-size:16px;font-weight:700;margin-top:3px;color:var(--ink)}
+.auth-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+@media(max-width:1100px){.auth-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:680px){.auth-grid{grid-template-columns:repeat(2,1fr)}}
+.auth-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 13px}
+.auth-card .al{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.auth-card .av{font-size:13px;font-weight:600;word-break:break-word;line-height:1.35}
+.strip-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}
+@media(max-width:860px){.strip-row{grid-template-columns:1fr}}
+.cstrip{display:flex;gap:11px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+.cstrip .ci{flex-shrink:0;color:var(--accent);margin-top:1px}
+.cstrip b{font-size:13px}
+.cstrip p{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.45}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:1100px){.svc-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.svc-grid{grid-template-columns:1fr}}
+.svc{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px;transition:border-color .15s ease,transform .15s var(--ease-out)}
+.svc:hover{border-color:rgba(var(--ov),.16);transform:translateY(-2px)}
+.svc .sh{font-size:13px;font-weight:700}
+.svc .sc{font-size:11px;color:var(--muted);margin:2px 0 7px}
+.svc .sd{font-size:11px;color:var(--muted);line-height:1.45}
+.pill-count{font-size:11px;font-weight:700;color:var(--muted);background:rgba(var(--ov),.07);border:1px solid var(--line);border-radius:6px;padding:3px 9px}
+.coll-name b{font-size:13px}.coll-name span{display:block;font-size:11px;color:var(--muted);font-family:"Cascadia Code",monospace}
+
+/* ── Reports page ── */
+.rep-row{display:flex;align-items:center;gap:10px;padding:12px 4px;border-bottom:1px solid rgba(var(--ov),.05);cursor:pointer}
+.rep-row:last-of-type{border-bottom:none}
+.rep-row input{accent-color:var(--accent);width:15px;height:15px;cursor:pointer}
+.rep-row .rl{font-size:13px;font-weight:600}
+.rep-row .rn{font-size:11px;color:var(--muted);margin-left:6px;font-weight:400}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:8px 0 16px}
+.stat-cell{padding:12px 14px;border-right:1px solid var(--line)}
+.stat-cell:last-child{border-right:none}
+.stat-cell .sl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.stat-cell .sv{font-size:20px;font-weight:800;margin-top:3px}
+@media(max-width:560px){.stat-grid{grid-template-columns:repeat(2,1fr)}.stat-cell:nth-child(2){border-right:none}}
+.gen-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border:1px solid var(--line);border-radius:10px;margin-bottom:10px;background:var(--panel)}
+.gen-row .gt{font-size:13px;font-weight:600}
+.gen-row .gs{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* ── Settings page ── */
+.set-group{padding:14px 0;border-bottom:1px solid rgba(var(--ov),.05)}
+.set-group:last-child{border-bottom:none}
+.set-group .sgl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:8px}
+.set-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.set-grid{grid-template-columns:1fr}}
+.set-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+.set-card label{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:7px;margin-bottom:8px}
+
+/* ── AI / MCP page ── */
+.ask-q{font-size:13px;font-weight:600;padding:11px 14px;border:1px solid var(--line);border-radius:9px;cursor:pointer;transition:border-color .15s ease,background .15s ease,transform .12s var(--ease-out)}
+.ask-q:hover{border-color:var(--accent);background:rgba(var(--ov),.03)}
+.ask-q:active{transform:scale(.99)}
+.mcp-field code{display:block;font-size:12px;color:var(--code-ink);background:var(--code-bg);border-radius:6px;padding:9px 11px;word-break:break-all;margin-bottom:8px;font-family:"Cascadia Code",monospace}
+.mcp-steps{margin:8px 0 0;padding-left:18px;font-size:13px;color:var(--muted);line-height:1.7}
+
 @media (prefers-reduced-motion:reduce){
   .page.active .minibar > i{animation:none;transform:none}
   .live-pill .pulse{animation:none}
@@ -589,6 +649,15 @@ body.cmdk-open #cmdk{display:flex}
       Asset Inventory
       <span class="nav-badge">16</span>
     </div>
+    <div class="nav-item" onclick="nav('collectors')">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="9" width="12" height="5" rx="1"/><path d="M4 9V5a4 4 0 018 0v4"/><circle cx="8" cy="11.5" r=".8" fill="currentColor"/></svg>
+      Collectors
+      <span class="nav-badge" style="background:rgba(var(--ov),.12);color:var(--muted)">1</span>
+    </div>
+    <div class="nav-item" onclick="nav('reports')">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 1.5h6l2.5 2.5v10a.5.5 0 01-.5.5H4a.5.5 0 01-.5-.5V2a.5.5 0 01.5-.5z"/><path d="M9.5 1.5V4H12M6 8h4M6 11h3"/></svg>
+      Reports
+    </div>
     <div class="nav-item" onclick="nav('creds')">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="10" height="7" rx="1"/><path d="M5 7V5a3 3 0 016 0v2"/><circle cx="8" cy="10.5" r="1"/></svg>
       Default Credentials
@@ -624,6 +693,10 @@ body.cmdk-open #cmdk{display:flex}
     <div class="nav-item" onclick="nav('remediation')">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10v10H3z"/><path d="M5.5 8l1.5 1.5L10.5 6"/></svg>
       Remediation
+    </div>
+    <div class="nav-item" onclick="nav('settings')">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2.2"/><path d="M8 1.5v2M8 12.5v2M1.5 8h2M12.5 8h2M3.5 3.5l1.4 1.4M11.1 11.1l1.4 1.4M3.5 12.5l1.4-1.4M11.1 4.9l1.4-1.4"/></svg>
+      Settings
     </div>
   </div>
 </nav>
@@ -1371,48 +1444,65 @@ body.cmdk-open #cmdk{display:flex}
     <div class="why"><b>Why it matters in OT:</b> OT defenders are often controls engineers, not vulnerability analysts. The guide translates CVE / CVSS / KEV jargon into <b>operational decisions</b> — "patch this PLC first, and here's why" — over the MCP interface.</div>
     <div class="feat"><span class="badge">Plain-English answers</span><span class="badge">Grounded in scan data</span><span class="badge">MCP interface</span></div>
   </div></div>
-  <div style="max-width:760px">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
-      <div style="width:36px;height:36px;background:rgba(236,0,0,.15);border:1px solid rgba(236,0,0,.3);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px">🤖</div>
-      <div>
-        <div style="font-weight:700;font-size:16px">OT Security AI Guide</div>
-        <div style="font-size:12px;color:var(--muted)">Powered by Breakwater MCP · Context-aware of current scan session</div>
-      </div>
+  <div class="card">
+    <div class="sk">Ask Breakwater</div>
+    <div class="sk-sub" id="ask-title">What should I review next?</div>
+    <div style="font-size:13px;color:var(--muted);margin-top:6px" id="ask-answer">Review the RTSP-only camera first; it has 2 evidence records and 54% confidence — the lowest in the run.</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin:14px 0">
+      <div class="dl"><span>Confidence</span><span>75% average identity score</span></div>
+      <div class="dl"><span>Evidence</span><span>33 records in run-sim-small-industrial</span></div>
+      <div class="dl"><span>Freshness</span><span>latest completed run</span></div>
     </div>
+    <div class="dsec">Ask about this run</div>
+    <textarea id="ask-input" rows="3" placeholder="Example: Which evidence makes the RTSP camera uncertain?" style="resize:vertical"></textarea>
+    <button class="btn btn-accent" onclick="prepareCitedPrompt()" style="width:100%;justify-content:center;margin-top:10px">Prepare cited prompt</button>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:14px">
+      <div class="ask-q" onclick="askQ(0)">Summarize what changed in plain English.</div>
+      <div class="ask-q" onclick="askQ(1)">Which assets need review first?</div>
+      <div class="ask-q" onclick="askQ(2)">Why does Breakwater think this device identity is uncertain?</div>
+      <div class="ask-q" onclick="askQ(3)">What can Claude or ChatGPT ask through MCP?</div>
+    </div>
+    <div class="info-strip green" style="margin-top:14px;margin-bottom:0">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="flex-shrink:0;margin-top:1px"><circle cx="8" cy="8" r="6.5"/><path d="M5.5 8l1.6 1.6L10.5 6.5"/></svg>
+      <div>AI analyst is <b>evidence-bound</b>. MCP policy is enforced; MCP is <b>read-only</b>. Breakwater cloud does not scan private LANs directly. This prompt builder sends nothing externally — you choose where to paste it.</div>
+    </div>
+  </div>
 
-    <div class="chat-window">
-      <div class="chat-messages" id="chat-messages">
-        <div class="chat-bubble chat-user">Which devices need identity review and why?</div>
-        <div class="chat-bubble chat-ai">
-          <strong>Two devices require immediate identity review:</strong><br><br>
-          <strong>PLC-01 (192.168.1.10)</strong> — CVE-2019-13945 is in the CISA KEV list (added Feb 2022) with an EPSS score of 0.847, placing it in the top 5% of all exploitable CVEs. The default credentials check shows this device is likely using factory-default HTTP credentials. Role: Safety system — highest priority.<br><br>
-          <strong>Cam-03 (192.168.1.30)</strong> — CVE-2021-36260 scores 9.8 CRITICAL with EPSS 0.921 (top 1%). Actively exploited by Mirai botnet variants. Externally reachable. Nuclei confirmed the endpoint is responsive.
-        </div>
-        <div class="chat-bubble chat-user">Explain CVE-2019-13945 in plain English</div>
-        <div class="chat-bubble chat-ai">
-          <strong>CVE-2019-13945 — Siemens SIMATIC S7-300 DoS</strong><br><br>
-          Imagine the PLC is a factory robot controller. This vulnerability means that anyone on the same network — no login required — can send a single specially crafted network packet to port 102 (the S7comm protocol port), and the PLC will immediately crash and stop operating.<br><br>
-          In an OT environment, this means an attacker who gains network access — through a phishing email, a compromised laptop, or a rogue USB device — could halt a production line, disable a safety interlock, or cause a controlled process to fail uncontrolled.<br><br>
-          <strong>Why it matters now:</strong> It's in CISA's Known Exploited Vulnerabilities catalog, meaning real attackers are actively using it. EPSS 0.847 means there's an 84.7% probability it will be exploited within the next 30 days if not patched.
-        </div>
-        <div class="chat-bubble chat-user">What's the recommended remediation sequence?</div>
-        <div class="chat-bubble chat-ai">
-          <strong>Recommended remediation sequence (by risk score):</strong><br><br>
-          1. <strong>Cam-03 (9.7 CRITICAL)</strong> — Isolate from external network immediately. Upgrade firmware to V5.5.800. Disable remote web management.<br>
-          2. <strong>PLC-01 (9.4 CRITICAL)</strong> — Apply Siemens SSA-568101 patch. Change default credentials first (takes &lt;5 min). Restrict S7comm port 102 to known engineering workstations via ACL.<br>
-          3. <strong>HMI-02 (7.8 HIGH)</strong> — Schedule maintenance window for Siemens SSA-434534. Implement network segmentation as interim control.
-        </div>
-      </div>
-      <div class="suggestion-chips">
-        <span class="chip" onclick="sendSuggestion(this)">Summarize findings</span>
-        <span class="chip" onclick="sendSuggestion(this)">Which CVEs are KEV?</span>
-        <span class="chip" onclick="sendSuggestion(this)">Explain topology risk</span>
-        <span class="chip" onclick="sendSuggestion(this)">Export remediation plan</span>
-      </div>
-      <div class="chat-input-row">
-        <input type="text" id="chat-input" placeholder="Ask about vulnerabilities, assets, or remediation…" onkeydown="if(event.key==='Enter')sendChat()">
-        <button class="btn btn-accent btn-sm" onclick="sendChat()">Send</button>
-      </div>
+  <div class="card" style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <div>
+      <div class="sk">Connected services</div>
+      <div class="sk-sub">MCP connector setup</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px;max-width:560px">Connect Breakwater's read-only discovery evidence to AI web clients without giving the cloud permission to scan private networks.</div>
+    </div>
+    <span class="pill-count">OAUTH · READ-ONLY</span>
+  </div>
+
+  <div class="grid-3">
+    <div class="set-card mcp-field"><label>Remote MCP server URL</label><code>https://mcp-auth.bwtr.ai/mcp</code><button class="btn btn-outline btn-sm" style="width:100%;justify-content:center" onclick="copyText('https://mcp-auth.bwtr.ai/mcp')">Copy endpoint</button></div>
+    <div class="set-card mcp-field"><label>OAuth Client ID</label><code>2c1mcql8is1jv0svdivghui1h3</code><button class="btn btn-outline btn-sm" style="width:100%;justify-content:center" onclick="copyText('2c1mcql8is1jv0svdivghui1h3')">Copy client ID</button></div>
+    <div class="set-card mcp-field"><label>Default scope</label><code>breakwater.discovery/read</code><button class="btn btn-outline btn-sm" style="width:100%;justify-content:center" onclick="copyText('breakwater.discovery/read')">Copy scope</button></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between"><b style="font-size:14px">ChatGPT / OpenAI</b><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#20e080" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M5.5 8l1.6 1.6L10.5 6.5"/></svg></div>
+      <div style="font-size:11px;color:#20e080;font-weight:600;margin:3px 0 8px">Web connector ready</div>
+      <div style="font-size:12px;color:var(--muted)">Use ChatGPT developer-mode custom connectors to attach Breakwater's read-only MCP server.</div>
+      <ol class="mcp-steps">
+        <li>Open ChatGPT settings and enable developer mode for custom MCP connectors.</li>
+        <li>Create a new custom connector and enter the Breakwater remote MCP server URL.</li>
+        <li>Use the OAuth client ID if ChatGPT asks for one; leave the client secret blank.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between"><b style="font-size:14px">Claude</b><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#20e080" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M5.5 8l1.6 1.6L10.5 6.5"/></svg></div>
+      <div style="font-size:11px;color:#20e080;font-weight:600;margin:3px 0 8px">Web connector ready</div>
+      <div style="font-size:12px;color:var(--muted)">Use Claude custom connectors to connect the same Breakwater remote MCP endpoint.</div>
+      <ol class="mcp-steps">
+        <li>Open Claude Settings, then Connectors, and choose Add custom connector.</li>
+        <li>Enter the Breakwater remote MCP server URL.</li>
+        <li>If Advanced settings asks for a client ID, paste the Breakwater OAuth client ID; leave secret blank.</li>
+      </ol>
     </div>
   </div>
 </div>
@@ -2033,6 +2123,232 @@ body.cmdk-open #cmdk{display:flex}
   </div>
 </div>
 
+<!-- ════════════════════════════════════════
+     PAGE: COLLECTORS
+════════════════════════════════════════ -->
+<div class="page" id="page-collectors">
+  <div class="explainer"><div class="explainer-inner">
+    <div class="explainer-head"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M8 7.5v3.5" stroke-linecap="round"/><circle cx="8" cy="5" r=".9"/></svg>What this does</div>
+    <p>Manages the <b>local collector</b> that runs inside the network and uploads evidence — its enrollment, run authorization, health, and exactly what each run observed, method by method.</p>
+    <div class="why"><b>Why it matters in OT:</b> You never let a cloud reach into the plant. A scoped, <b>token-bound</b> collector runs locally, and every upload must bind the collector, run, site, credential and signed policy scope — so evidence is provably authorized and tamper-evident.</div>
+    <div class="feat"><span class="badge">Enrollment &amp; tokens</span><span class="badge">Run authorization</span><span class="badge">Per-method run process</span><span class="badge">Evidence provenance</span></div>
+  </div></div>
+
+  <div class="card" style="padding:16px 18px">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <div>
+        <div class="sk">Collectors</div>
+        <div class="sk-sub">Local collector lifecycle</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:4px">Enroll, authorize, run, and audit collectors that run inside the network.</div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span class="badge badge-green">1 enrolled</span>
+        <button class="btn btn-accent btn-sm" onclick="enrollCollector()">+ Enroll collector</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-kicker"><div class="sk">Run authorization</div></div>
+  <div class="auth-grid">
+    <div class="auth-card"><div class="al">Operator</div><div class="av">simulator fixture</div></div>
+    <div class="auth-card"><div class="al">Authorized at</div><div class="av" style="font-family:'Cascadia Code',monospace;font-size:11px">2026-05-17T14:05:00.000Z</div></div>
+    <div class="auth-card"><div class="al">Scope</div><div class="av">simulator fixture scope</div></div>
+    <div class="auth-card"><div class="al">Allowlist</div><div class="av">simulator fixture scope</div></div>
+    <div class="auth-card"><div class="al">Collector</div><div class="av" style="font-size:11px">collector-site-main-light-industrial-lab-collector</div></div>
+    <div class="auth-card"><div class="al">Run</div><div class="av">run-sim-small-industrial</div></div>
+    <div class="auth-card"><div class="al">Approval</div><div class="av">simulator</div></div>
+  </div>
+
+  <div class="strip-row">
+    <div class="cstrip"><span class="ci"><svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 13h2v-3H2zM6 13h2V7H6zM10 13h2V4h-2zM14 13V2"/></svg></span><div><b>1 online</b><p>Heartbeat, version, platform, site, current task, and last run are tracked.</p></div></div>
+    <div class="cstrip"><span class="ci"><svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="3"/><path d="M8.2 8.2 14 14M11 11l1.5-1.5M12.5 12.5 14 11"/></svg></span><div><b>Tokens hashed</b><p>Collector tokens are shown once at enrollment and never returned through MCP or UI status.</p></div></div>
+    <div class="cstrip"><span class="ci"><svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2l5 2v4c0 3-5 6-5 6S3 11 3 8V4l5-2z"/><path d="M3 3l10 10"/></svg></span><div><b>Revocation enforced</b><p>Uploads must bind collector, run, site, credential, and signed policy scope.</p></div></div>
+  </div>
+
+  <div class="card">
+    <table class="tbl">
+      <thead><tr><th>Collector</th><th>Health</th><th>Version</th><th>Platform</th><th>Site</th><th>Capabilities</th><th>Token</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="coll-name"><b>Light industrial lab collector</b><span>collector-site-main-light-industrial-lab-collector</span></td>
+          <td><span class="badge badge-green">ONLINE</span></td>
+          <td>0.1.0<div style="font-size:11px;color:var(--muted)">render-only-local</div></td>
+          <td>local fixture</td>
+          <td>site-main</td>
+          <td style="font-size:11px;color:var(--muted);max-width:200px">ARP, mDNS, RTSP, HTTP, MQTT, Modbus, ONVIF</td>
+          <td><div style="display:flex;align-items:center;gap:8px"><span class="badge badge-green">ACTIVE</span><button class="btn btn-outline btn-sm" onclick="rotateToken()">↻ Rotate</button></div><div style="font-size:11px;color:var(--muted);margin-top:3px">Secret value hidden</div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-kicker"><div><div class="sk">Run process</div><div class="sk-sub">What worked, failed, and how many devices each method touched</div></div><span class="pill-count">5 steps</span></div>
+  <div class="card">
+    <table class="tbl">
+      <thead><tr><th>Technique / step</th><th>Status</th><th>Observed</th><th>Rejected</th><th>Duration</th><th>Devices</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td><b>Load scope</b></td><td><span class="badge badge-green">COMPLETED</span></td><td>2</td><td>0</td><td style="color:var(--muted)">0ms</td><td style="color:var(--muted);font-size:12px">Edge router/firewall, Core access switch</td><td style="color:var(--muted);font-size:12px">Prepare the simulated site ranges, segments, and passive hints.</td></tr>
+        <tr><td><b>Find active devices</b></td><td><span class="badge badge-green">COMPLETED</span></td><td>2</td><td>0</td><td style="color:var(--muted)">0ms</td><td style="color:var(--muted);font-size:12px">Office wireless AP, Admin workstation</td><td style="color:var(--muted);font-size:12px">Reveal devices that respond inside the simulated environment.</td></tr>
+        <tr><td><b>Read service signals</b></td><td><span class="badge badge-green">COMPLETED</span></td><td>8</td><td>0</td><td style="color:var(--muted)">0ms</td><td style="color:var(--muted);font-size:12px">Lobby camera, Loading dock camera, RTSP-only camera, File NAS, Office printer +3</td><td style="color:var(--muted);font-size:12px">Use protocol, hostname, banner, and service evidence.</td></tr>
+        <tr><td><b>Classify inventory</b></td><td><span class="badge badge-green">COMPLETED</span></td><td>2</td><td>0</td><td style="color:var(--muted)">0ms</td><td style="color:var(--muted);font-size:12px">Line 1 PLC, Line 1 HMI</td><td style="color:var(--muted);font-size:12px">Attach device type, vendor, owner, model, and location when evidence supports it.</td></tr>
+        <tr><td><b>Flag review items</b></td><td><span class="badge badge-green">COMPLETED</span></td><td>2</td><td>0</td><td style="color:var(--muted)">0ms</td><td style="color:var(--muted);font-size:12px">Unknown unmanaged device, Legacy controller</td><td style="color:var(--muted);font-size:12px">Surface unknown, unmanaged, low-confidence, or conflicting assets.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-kicker"><div><div class="sk">Evidence services</div><div class="sk-sub">Which protocol / service contributed to which devices</div></div><span class="pill-count">15 services</span></div>
+  <div class="svc-grid">
+    <div class="svc"><div class="sh">HTTP</div><div class="sc">6 devices · 6 evidence</div><div class="sd">Lobby camera, Loading dock camera, File NAS, Line 1 PLC +2</div></div>
+    <div class="svc"><div class="sh">HTTPS</div><div class="sc">3 devices · 3 evidence</div><div class="sd">Edge router/firewall, Office wireless AP, Operations server</div></div>
+    <div class="svc"><div class="sh">MDNS</div><div class="sc">3 devices · 3 evidence</div><div class="sd">Office printer, MQTT temperature sensor</div></div>
+    <div class="svc"><div class="sh">RTSP</div><div class="sc">3 devices · 3 evidence</div><div class="sd">Lobby camera, Loading dock camera, RTSP-only camera</div></div>
+    <div class="svc"><div class="sh">SSH</div><div class="sc">3 devices · 3 evidence</div><div class="sd">Core access switch, Operations server, IoT gateway</div></div>
+    <div class="svc"><div class="sh">ARP</div><div class="sc">2 devices · 2 evidence</div><div class="sd">RTSP-only camera, Unknown unmanaged device</div></div>
+    <div class="svc"><div class="sh">MODBUS</div><div class="sc">2 devices · 2 evidence</div><div class="sd">Line 1 PLC, Line 1 HMI</div></div>
+    <div class="svc"><div class="sh">MQTT</div><div class="sc">2 devices · 2 evidence</div><div class="sd">IoT gateway, MQTT temperature sensor</div></div>
+    <div class="svc"><div class="sh">SMB</div><div class="sc">2 devices · 2 evidence</div><div class="sd">File NAS, Admin workstation</div></div>
+    <div class="svc"><div class="sh">SNMP</div><div class="sc">2 devices · 2 evidence</div><div class="sd">Edge router/firewall, Core access switch</div></div>
+    <div class="svc"><div class="sh">BACNET</div><div class="sc">1 device · 1 evidence</div><div class="sd">Legacy controller</div></div>
+    <div class="svc"><div class="sh">DHCP</div><div class="sc">1 device · 1 evidence</div><div class="sd">Edge router/firewall</div></div>
+    <div class="svc"><div class="sh">DNS</div><div class="sc">1 device · 1 evidence</div><div class="sd">Admin workstation</div></div>
+    <div class="svc"><div class="sh">IPP</div><div class="sc">1 device · 1 evidence</div><div class="sd">Office printer</div></div>
+    <div class="svc"><div class="sh">UNKNOWN</div><div class="sc">1 device · 1 evidence</div><div class="sd">Unknown unmanaged device</div></div>
+  </div>
+
+  <div class="sec-kicker"><div><div class="sk">Collector action status</div><div class="sk-sub">Recent lifecycle actions — signed and audited</div></div></div>
+  <div class="card" style="margin-bottom:0">
+    <table class="tbl">
+      <thead><tr><th>Action</th><th>When</th><th>Bound to</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td><b>Enroll collector</b></td><td style="color:var(--muted);font-size:12px">2026-05-17T14:05:00Z</td><td style="color:var(--muted);font-size:12px">site-main · token hashed at rest</td><td><span class="badge badge-green">signed</span></td></tr>
+        <tr><td><b>Authorize run</b></td><td style="color:var(--muted);font-size:12px">2026-05-17T14:05:01Z</td><td style="color:var(--muted);font-size:12px">run-sim-small-industrial · simulator fixture scope</td><td><span class="badge badge-green">authorized</span></td></tr>
+        <tr><td><b>Heartbeat</b></td><td style="color:var(--muted);font-size:12px">every 30s · last 2s ago</td><td style="color:var(--muted);font-size:12px">collector + site-main</td><td><span class="badge badge-green">online</span></td></tr>
+        <tr><td><b>Upload evidence</b></td><td style="color:var(--muted);font-size:12px">2026-05-17T14:05:03Z</td><td style="color:var(--muted);font-size:12px">collector + run + site + credential + policy</td><td><span class="badge badge-green">accepted · 33 items</span></td></tr>
+        <tr><td><b>Rotate token</b></td><td style="color:var(--muted);font-size:12px">on demand</td><td style="color:var(--muted);font-size:12px">collector secret</td><td><span class="badge badge-muted">available</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: REPORTS
+════════════════════════════════════════ -->
+<div class="page" id="page-reports">
+  <div class="explainer"><div class="explainer-inner">
+    <div class="explainer-head"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M8 7.5v3.5" stroke-linecap="round"/><circle cx="8" cy="5" r=".9"/></svg>What this does</div>
+    <p>Generates <b>customer-grade discovery reports</b> locally — executive summary, operator review, and a technical evidence appendix — each a deterministic export with source provenance, ready as HTML, PDF, JSON or CSV.</p>
+    <div class="why"><b>Why it matters in OT:</b> The deliverable of an assessment is the report. Deterministic exports with evidence IDs and <b>secret redaction</b> mean an auditor can reproduce every claim, and nothing sensitive (collector tokens, credentials) leaks into the artifact.</div>
+    <div class="feat"><span class="badge">Deterministic export</span><span class="badge">Evidence appendix</span><span class="badge">Secret redaction</span><span class="badge">HTML / PDF / JSON / CSV</span></div>
+  </div></div>
+
+  <div class="card" style="padding:16px 18px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <div><div class="sk">Reports</div><div class="sk-sub">Customer-grade discovery reports</div></div>
+    <span class="pill-count" style="font-family:'Cascadia Code',monospace">FNV1A-B2E0F5F0</span>
+  </div>
+
+  <div class="grid-2" style="align-items:start">
+    <div class="card">
+      <div class="card-title">Report builder</div>
+      <label class="rep-row"><input type="checkbox" checked><span class="rl">Executive discovery summary</span></label>
+      <label class="rep-row"><input type="checkbox" checked><span class="rl">Operator review report</span></label>
+      <label class="rep-row"><input type="checkbox" checked><span class="rl">Technical evidence appendix</span></label>
+      <label class="rep-row"><input type="checkbox"><span class="rl">Collector/run audit report</span></label>
+      <label class="rep-row"><input type="checkbox"><span class="rl">Method coverage and blind spots</span></label>
+      <label class="rep-row"><input type="checkbox" disabled><span class="rl" style="opacity:.6">Historical comparison report<span class="rn">Requires 2+ completed scans</span></span></label>
+      <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
+        <button class="btn btn-accent btn-sm" onclick="generateReport()">Generate report</button>
+        <button class="btn btn-outline btn-sm" onclick="downloadReport('HTML')">HTML</button>
+        <button class="btn btn-outline btn-sm" onclick="downloadReport('PDF-ready')">PDF-ready</button>
+      </div>
+      <div style="font-size:12px;font-weight:600;margin-top:14px">Ready to generate the default discovery report set locally with Chapter 03 evidence appendices.</div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#20e080" stroke-width="1.5"><path d="M8 2l5 2v4c0 3-5 6-5 6S3 11 3 8V4l5-2z"/><path d="M5.5 8l2 2 3-3"/></svg>
+        <b style="font-size:13px">executive summary</b>
+        <span style="color:var(--muted);font-size:11px">Breakwater Light Industrial Lab · run-sim-small-industrial · generated 2026-05-20T12:00:00.000Z</span>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-cell"><div class="sl">Assets</div><div class="sv">16</div></div>
+        <div class="stat-cell"><div class="sl">Review</div><div class="sv" style="color:#ffc840">4</div></div>
+        <div class="stat-cell"><div class="sl">Unknown</div><div class="sv" style="color:#ff8040">1</div></div>
+        <div class="stat-cell"><div class="sl">Confidence</div><div class="sv" style="color:#20e080">75%</div></div>
+      </div>
+      <div class="dsec">Discovery-only report</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.55">Includes scope, authorization, source provenance, confidence distribution, method coverage, unresolved assets, and an evidence appendix for inventory review.</div>
+      <div class="dsec">Chapter 03 evidence appendices</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.55">Provider state, Greenbone sidecar mode, Nuclei safe-template manifest, credential profile status without secrets, evidence IDs, redaction status, and coverage gaps are appended to HTML and JSON exports.</div>
+      <div class="stat-grid" style="margin-bottom:0">
+        <div class="stat-cell"><div class="sl">Providers</div><div class="sv">0</div></div>
+        <div class="stat-cell"><div class="sl">Gaps</div><div class="sv">0</div></div>
+        <div class="stat-cell"><div class="sl">Evidence</div><div class="sv">0</div></div>
+        <div class="stat-cell"><div class="sl">Secrets</div><div class="sv">0</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:4px">
+    <div class="gen-row"><div><div class="gt">Executive discovery summary</div><div class="gs">Deterministic export · source provenance included</div></div><div style="display:flex;align-items:center;gap:12px"><span style="font-size:12px;color:var(--muted)">33 evidence records</span><button class="btn btn-outline btn-sm" onclick="downloadReport('JSON')">JSON</button></div></div>
+    <div class="gen-row"><div><div class="gt">Operator review report</div><div class="gs">Deterministic export · source provenance included</div></div><div style="display:flex;align-items:center;gap:12px"><span style="font-size:12px;color:var(--muted)">33 evidence records</span><button class="btn btn-outline btn-sm" onclick="downloadReport('JSON')">JSON</button></div></div>
+    <div class="gen-row"><div><div class="gt">Technical evidence appendix</div><div class="gs">Deterministic export · source provenance included</div></div><div style="display:flex;align-items:center;gap:12px"><span style="font-size:12px;color:var(--muted)">33 evidence records</span><button class="btn btn-outline btn-sm" onclick="downloadReport('JSON')">JSON</button></div></div>
+  </div>
+
+  <div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:0">
+    <div>
+      <div class="sk">Export</div>
+      <div style="font-weight:700;font-size:14px;margin-top:3px">Download current view</div>
+      <div style="font-size:12px;color:var(--muted)">16 of 16 assets, 33 evidence items. Files include simulator source metadata.</div>
+    </div>
+    <div style="display:flex;gap:8px"><button class="btn btn-outline btn-sm" onclick="downloadReport('JSON')">JSON</button><button class="btn btn-outline btn-sm" onclick="downloadReport('CSV')">CSV</button></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: SETTINGS
+════════════════════════════════════════ -->
+<div class="page" id="page-settings">
+  <div class="explainer"><div class="explainer-inner">
+    <div class="explainer-head"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M8 7.5v3.5" stroke-linecap="round"/><circle cx="8" cy="5" r=".9"/></svg>What this does</div>
+    <p>Local, <b>discovery-only</b> controls — appearance, default scan profile, retention, report defaults, collection mode, and secret redaction. Saved on this device; nothing here triggers a later-phase action.</p>
+    <div class="why"><b>Why it matters in OT:</b> Defaults are policy. Setting "IoT/OT cautious", local-collect-then-review, and <b>secret redaction on</b> as the baseline means the safe path is the path of least resistance — operators can't accidentally exfiltrate a credential or run an aggressive profile.</div>
+    <div class="feat"><span class="badge">Appearance</span><span class="badge">Scan profile</span><span class="badge">Retention</span><span class="badge">Secret redaction</span></div>
+  </div></div>
+
+  <div class="card" style="padding:16px 18px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <div><div class="sk">Settings</div><div class="sk-sub">Discovery-only controls</div></div>
+    <span class="pill-count">No later-phase actions</span>
+  </div>
+
+  <div class="card">
+    <div style="font-weight:700;font-size:15px">Appearance</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:6px">Choose a skin and tune reading comfort. Saved on this device only.</div>
+    <div class="set-group"><div class="sgl">Skin</div><div class="radio-group" id="set-skin"><button class="radio-btn selected" onclick="setRadio('set-skin',this)">Graphite</button><button class="radio-btn" onclick="setRadio('set-skin',this)">Apple</button></div></div>
+    <div class="set-group"><div class="sgl">Reading font</div><div class="radio-group" id="set-font"><button class="radio-btn selected" onclick="setRadio('set-font',this)">Skin default</button><button class="radio-btn" onclick="setRadio('set-font',this)">High-legibility</button><button class="radio-btn" onclick="setRadio('set-font',this)">System</button></div></div>
+    <div class="set-group"><div class="sgl">Text size</div><div class="radio-group" id="set-size"><button class="radio-btn" onclick="setRadio('set-size',this)">Small</button><button class="radio-btn selected" onclick="setRadio('set-size',this)">Medium</button><button class="radio-btn" onclick="setRadio('set-size',this)">Large</button><button class="radio-btn" onclick="setRadio('set-size',this)">X-Large</button></div></div>
+    <div class="set-group"><div class="sgl">Density</div><div class="radio-group" id="set-density"><button class="radio-btn selected" onclick="setRadio('set-density',this)">Comfortable</button><button class="radio-btn" onclick="setRadio('set-density',this)">Compact</button></div></div>
+    <div class="set-group"><div class="sgl">Motion</div><div class="radio-group" id="set-motion"><button class="radio-btn selected" onclick="setRadio('set-motion',this)">Auto (follow OS)</button><button class="radio-btn" onclick="setRadio('set-motion',this)">Full</button><button class="radio-btn" onclick="setRadio('set-motion',this)">Reduced</button></div></div>
+    <div class="set-group"><div class="sgl">Contrast</div><div class="radio-group" id="set-contrast"><button class="radio-btn selected" onclick="setRadio('set-contrast',this)">Standard</button><button class="radio-btn" onclick="setRadio('set-contrast',this)">High</button></div></div>
+    <button class="btn btn-outline btn-sm" style="margin-top:14px" onclick="resetSettings()">Reset to defaults</button>
+    <div style="font-size:12px;color:var(--muted);margin-top:8px">Appearance defaults are ready.</div>
+  </div>
+
+  <div class="set-grid">
+    <div class="set-card"><label>Default profile</label><select onchange="settingChanged('Default profile',this.value)"><option>IoT/OT cautious</option><option>Balanced</option><option>Aggressive (authorized)</option></select></div>
+    <div class="set-card"><label>Local retention</label><select onchange="settingChanged('Local retention',this.value)"><option>90 days</option><option>30 days</option><option>180 days</option><option>1 year</option></select></div>
+    <div class="set-card"><label>Report defaults</label><select onchange="settingChanged('Report defaults',this.value)"><option>Summary plus evidence appendix</option><option>Summary only</option><option>Full technical</option></select></div>
+    <div class="set-card"><label>Collection mode</label><select onchange="settingChanged('Collection mode',this.value)"><option>Collect locally, review HTML, then upload</option><option>Collect and upload automatically</option><option>Collect only (no upload)</option></select></div>
+    <div class="set-card"><label>Customer deployment</label><select onchange="settingChanged('Customer deployment',this.value)"><option>Breakwater-hosted dedicated namespace</option><option>Self-hosted</option><option>Air-gapped</option></select></div>
+    <div class="set-card" style="display:flex;align-items:center"><label class="toggle-row" style="margin:0"><input type="checkbox" checked onchange="settingChanged('Secret redaction', this.checked?'on':'off')"><span style="font-weight:600;color:var(--ink)">🔒 Redact collector secrets from reports and MCP</span></label></div>
+  </div>
+
+  <div class="card" style="margin-bottom:0">
+    <div class="sk">Local settings status</div>
+    <div style="font-size:13px;color:var(--muted);margin-top:6px">Default discovery settings loaded for this local Phase 1 session.</div>
+    <div style="font-size:12px;color:var(--muted);margin-top:8px;line-height:1.6">Current local policy: <b style="color:var(--ink)">IoT/OT cautious</b>, 90 day retention, Summary plus evidence appendix, Collect locally / review HTML / then upload, Breakwater-hosted dedicated namespace, <b style="color:var(--ink)">secret redaction on</b>.</div>
+  </div>
+</div>
+
   </div><!-- /content -->
 </div><!-- /main -->
 
@@ -2047,7 +2363,8 @@ const PAGE_TITLES = {
   evidence:'Evidence & Validation', coverage:'Coverage & Provenance',
   ai:'AI / MCP Guide', safety:'Safety Posture',
   frameworks:'Frameworks & Controls', livedata:'Live Data & Forwarders',
-  remediation:'Remediation Tracker'
+  remediation:'Remediation Tracker', collectors:'Collectors',
+  reports:'Reports', settings:'Settings'
 };
 
 // Escape any untrusted string before it touches innerHTML (XSS defense).
@@ -2149,6 +2466,46 @@ function closeSidebar(){document.body.classList.remove('sidebar-open');}
 
 function exportReport(){
   toast('Report exported','remediation-plan-2024-01-15.pdf · 3 devices, 14 CVEs','ok');
+}
+function enrollCollector(){
+  toast('Enrollment token issued','Shown once · bound to site-main · hashed at rest','ok');
+}
+function rotateToken(){
+  toast('Token rotated','New secret issued · previous token revoked','warn');
+}
+function generateReport(){
+  const n=document.querySelectorAll('#page-reports .rep-row input:checked').length;
+  toast('Report generated', n+' section'+(n===1?'':'s')+' · 33 evidence records · Chapter 03 appendices','ok');
+}
+function downloadReport(fmt){
+  const ext=fmt.toLowerCase().replace('-ready','');
+  toast('Download started','discovery-report-2026-05-20.'+ext+' · source metadata included','ok');
+}
+function resetSettings(){
+  toast('Appearance reset','Defaults restored on this device','info');
+}
+function settingChanged(name,val){
+  toast(name+' updated', String(val),'info');
+}
+const ASK_QA=[
+  {q:'Summarize what changed in plain English.',a:'This run found 16 assets and 33 evidence records. 4 need review, 1 is unknown, and average identity confidence is 75%. The two highest risks are Cam-03 (9.7) and PLC-01 (9.4), both CISA-KEV.'},
+  {q:'Which assets need review first?',a:'Review the RTSP-only camera (54% confidence, 2 evidence records) first, then the unknown unmanaged device and the legacy controller — all flagged for weak or conflicting identity.'},
+  {q:'Why does Breakwater think this device identity is uncertain?',a:'Identity confidence is low when few methods agree. The RTSP-only camera was seen on RTSP + ARP only, with no HTTP/banner/CPE match — enrichment was partial, so the class is a best guess, not a confirmation.'},
+  {q:'What can Claude or ChatGPT ask through MCP?',a:'Read-only discovery questions: asset inventory, evidence records, confidence and coverage, and report summaries. MCP cannot scan, change state, or read collector secrets — the policy is enforced server-side.'}
+];
+function askQ(i){
+  const item=ASK_QA[i]; if(!item) return;
+  document.getElementById('ask-title').textContent=item.q;
+  document.getElementById('ask-answer').textContent=item.a;
+}
+function prepareCitedPrompt(){
+  const t=(document.getElementById('ask-input').value||'').trim();
+  if(!t){toast('Add a question','Type what you want the AI to answer','warn');return;}
+  toast('Cited prompt ready','Question + 33 evidence citations · paste into Claude or ChatGPT','ok');
+}
+function copyText(s){
+  try{ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(s);} }catch(e){}
+  toast('Copied to clipboard', s,'ok');
 }
 
 // ═══════════════════════════════════════════════
