@@ -3,10 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; manifest-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="description" content="Interactive OT/ICS vulnerability assessment console — CPE→CVE, CVSS, scanner adapters, risk prioritization, framework mapping, remediation. Simulator-backed and safe to explore.">
 <title>OT Vulnerability Lab — See every device. Prove every weakness.</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a0b0d" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="OT Vulnerability Lab — See every device. Prove every weakness.">
+<meta property="og:description" content="Interactive OT/ICS vulnerability assessment console — CPE→CVE, CVSS, scanners, risk prioritization, NIST/IEC/ATT&CK mapping, remediation. Simulator-backed.">
+<meta property="og:url" content="https://ot-vuln-lab.pages.dev/">
+<meta property="og:image" content="https://ot-vuln-lab.pages.dev/og.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OT Vulnerability Lab">
+<meta name="twitter:description" content="Interactive OT/ICS vulnerability assessment console. Simulator-backed, CSP-hardened, zero dependencies.">
+<meta name="twitter:image" content="https://ot-vuln-lab.pages.dev/og.svg">
 <style>
 :root,html[data-theme="dark"]{
   color-scheme:dark;

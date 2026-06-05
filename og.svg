@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs><radialGradient id="g" cx="18%" cy="0%" r="85%"><stop offset="0" stop-color="#ec0000" stop-opacity="0.2"/><stop offset="1" stop-color="#0a0b0d" stop-opacity="0"/></radialGradient></defs>
+  <rect width="1200" height="630" fill="#0a0b0d"/>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <g transform="translate(90,86)">
+    <rect width="64" height="64" rx="16" fill="#ec0000"/>
+    <path d="M13 45 L26 19 L39 35 L45 26 L51 45" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="84" y="44" fill="#f4f5f7" font-family="system-ui,Segoe UI,Arial" font-size="30" font-weight="700">OT Vuln Lab</text>
+  </g>
+  <text x="90" y="280" fill="#f4f5f7" font-family="system-ui,Segoe UI,Arial" font-size="78" font-weight="800">See every device.</text>
+  <text x="90" y="368" fill="#ec0000" font-family="system-ui,Segoe UI,Arial" font-size="78" font-weight="800">Prove every weakness.</text>
+  <text x="92" y="446" fill="#969ba3" font-family="system-ui,Segoe UI,Arial" font-size="29">Interactive OT / ICS vulnerability assessment console</text>
+  <text x="92" y="488" fill="#969ba3" font-family="system-ui,Segoe UI,Arial" font-size="29">CPE&#8594;CVE &#183; CVSS &#183; scanners &#183; risk &#183; NIST / IEC / ATT&amp;CK &#183; remediation</text>
+  <g transform="translate(92,536)">
+    <rect width="196" height="50" rx="25" fill="#ec0000"/>
+    <text x="36" y="32" fill="#fff" font-family="system-ui,Segoe UI,Arial" font-size="24" font-weight="700">Launch console</text>
+    <text x="220" y="32" fill="#969ba3" font-family="system-ui,Segoe UI,Arial" font-size="22">16 workspaces &#183; 0 dependencies &#183; CSP-hardened</text>
+  </g>
+</svg>

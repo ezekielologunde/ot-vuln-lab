@@ -6,8 +6,13 @@
 <!-- Hardening: lock the document to itself. No external scripts, no network
      egress (connect-src none), no plugins/objects, no base-uri or form hijack.
      Inline script/style are required by this single-file app, hence 'unsafe-inline'. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; manifest-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
 <meta name="referrer" content="no-referrer">
+<meta name="description" content="Interactive OT/ICS vulnerability assessment console — CPE→CVE, CVSS, scanner adapters, risk prioritization, framework mapping, and remediation tracking.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a0b0d">
 <title>OT Vulnerability Assessment Lab — Breakwater</title>
 <style>
 :root,html[data-theme="dark"]{

@@ -1,0 +1,13 @@
+{
+  "name": "OT Vulnerability Assessment Lab",
+  "short_name": "OT Vuln Lab",
+  "description": "Interactive OT/ICS vulnerability assessment console — CPE→CVE, CVSS, scanners, risk prioritization, framework mapping, remediation.",
+  "start_url": "/app.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0b0d",
+  "theme_color": "#0a0b0d",
+  "icons": [
+    { "src": "favicon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any" }
+  ]
+}
