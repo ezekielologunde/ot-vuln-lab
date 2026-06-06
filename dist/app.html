@@ -573,6 +573,20 @@ body.cmdk-open #cmdk{display:flex}
 .nav-group-items > .ng-inner{overflow:hidden;min-height:0}
 @media (prefers-reduced-motion:reduce){.nav-group-items{transition:none}.nav-group-head .chev{transition:none}}
 
+/* ── Lighter page density (calmer defaults, more breathing room) ── */
+#content{padding:28px 32px}
+@media(max-width:600px){#content{padding:16px}}
+.card{padding:22px;margin-bottom:18px}
+.grid-2,.grid-3{gap:18px}
+.dash-b,.dash-c{gap:18px;margin-bottom:18px}
+.kpi-row{grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:18px}
+@media(max-width:760px){.kpi-row{grid-template-columns:repeat(2,1fr)}}
+.kpi{padding:16px 18px}
+.tbl td{padding:12px 14px}
+.tbl th{padding:10px 14px}
+.dsec{margin:20px 0 9px}
+.auth-grid,.svc-grid{gap:14px}
+
 @media (prefers-reduced-motion:reduce){
   .page.active .minibar > i{animation:none;transform:none}
   .live-pill .pulse{animation:none}
