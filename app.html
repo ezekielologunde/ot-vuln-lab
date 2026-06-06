@@ -6,7 +6,7 @@
 <!-- Hardening: lock the document to itself. No external scripts, no network
      egress (connect-src none), no plugins/objects, no base-uri or form hijack.
      Inline script/style are required by this single-file app, hence 'unsafe-inline'. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; manifest-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; manifest-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="description" content="Interactive OT/ICS vulnerability assessment console — CPE→CVE, CVSS, scanner adapters, risk prioritization, framework mapping, and remediation tracking.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -2758,35 +2758,53 @@ const MOCK_CVES = [
   {id:'CVE-2014-2251',sev:'MEDIUM',score:'5.8',pub:'2014-03-16',kev:false,epss:'0.087'},
 ];
 
+function cveRow(c){
+  const sc = parseFloat(c.score);
+  const cls = sc>=9?'sev-critical':sc>=7?'sev-high':sc>=4?'sev-medium':'sev-low';
+  const kbadge = c.kev?'<span class="badge badge-red">KEV</span>':'<span class="badge badge-muted">—</span>';
+  const epssCls = parseFloat(c.epss)>0.7?'epss-hi':parseFloat(c.epss)>0.4?'epss-mid':'epss-lo';
+  return '<tr class="clickable" onclick="openCVE(\''+esc(c.id)+'\')">'
+    +'<td style="color:var(--link);font-weight:600">'+esc(c.id)+'</td>'
+    +'<td class="'+cls+'">'+esc(c.sev)+'</td>'
+    +'<td class="'+cls+'">'+esc(String(c.score))+'</td>'
+    +'<td style="color:var(--muted)">'+esc(c.pub||'—')+'</td>'
+    +'<td>'+kbadge+'</td>'
+    +'<td class="'+epssCls+'" style="font-weight:600">'+esc(String(c.epss))+'</td></tr>';
+}
+function renderCves(cves, live){
+  document.getElementById('nvd-btn-text').textContent='Query NVD API';
+  document.getElementById('nvd-spinner').style.display='none';
+  document.getElementById('cve-placeholder').style.display='none';
+  document.getElementById('cve-table-wrap').style.display='block';
+  document.getElementById('cve-count').textContent='— '+cves.length+' results'+(live?' · live NVD':'');
+  document.getElementById('cve-tbody').innerHTML=cves.map(cveRow).join('');
+  toast('NVD query complete', cves.length+' CVEs · '+(live?'live API (NVD+KEV+EPSS)':'simulator fixture'), 'ok');
+}
 function queryNVD() {
   const btn = document.getElementById('nvd-btn-text');
   const sp = document.getElementById('nvd-spinner');
   const ph = document.getElementById('cve-placeholder');
   const tw = document.getElementById('cve-table-wrap');
-  const count = document.getElementById('cve-count');
   btn.textContent='Querying…'; sp.style.display='inline-block';
   ph.style.display='block'; tw.style.display='none';
-  setTimeout(()=>{
-    btn.textContent='Query NVD API'; sp.style.display='none';
-    ph.style.display='none'; tw.style.display='block';
-    count.textContent='— '+MOCK_CVES.length+' results';
-    const tbody = document.getElementById('cve-tbody');
-    tbody.innerHTML = MOCK_CVES.map(c=>{
-      const sc = parseFloat(c.score);
-      const cls = sc>=9?'sev-critical':sc>=7?'sev-high':sc>=4?'sev-medium':'sev-low';
-      const kbadge = c.kev?'<span class="badge badge-red">KEV</span>':'<span class="badge badge-muted">—</span>';
-      const epssCls = parseFloat(c.epss)>0.7?'epss-hi':parseFloat(c.epss)>0.4?'epss-mid':'epss-lo';
-      return `<tr class="clickable" onclick="openCVE('${c.id}')">
-        <td style="color:var(--link);font-weight:600">${c.id}</td>
-        <td class="${cls}">${c.sev}</td>
-        <td class="${cls}">${c.score}</td>
-        <td style="color:var(--muted)">${c.pub}</td>
-        <td>${kbadge}</td>
-        <td class="${epssCls}" style="font-weight:600">${c.epss}</td>
-      </tr>`;
-    }).join('');
-    toast('NVD query complete',MOCK_CVES.length+' CVEs returned · Redis HIT','ok');
-  },1400);
+  // Live backend if a containerized API is wired (window.OTLAB_API); else fixture.
+  if(window.OTLAB_API){
+    const cpe=(document.getElementById('cpe-input').value||'').trim();
+    const selBtn=document.querySelector('#match-mode .radio-btn.selected');
+    const exact=!selBtn||selBtn.textContent.trim()==='Exact';
+    fetch(window.OTLAB_API+'/enrich?cpe='+encodeURIComponent(cpe)+'&exact='+exact)
+      .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+      .then(d=>{
+        const cves=(d.cves||[]).map(c=>({id:c.id,sev:c.severity||'UNKNOWN',
+          score:(c.score==null?'—':c.score),pub:c.published||'',kev:!!c.kev,
+          epss:(c.epss==null?'—':c.epss)}));
+        renderCves(cves, true);
+      })
+      .catch(e=>{ toast('Live API unavailable',(e.message||'')+' — using fixture','warn');
+        setTimeout(()=>renderCves(MOCK_CVES,false),300); });
+    return;
+  }
+  setTimeout(()=>renderCves(MOCK_CVES,false),1200);
 }
 
 // ═══════════════════════════════════════════════
